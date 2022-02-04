@@ -7,5 +7,7 @@ declare module "styled-components" {
     bgColor: string;
     accentColor: string;
     listbg: string;
+    toggle_position: string;
+    border: string;
   }
 }
