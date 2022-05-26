@@ -1,11 +1,11 @@
-import { atom, selector } from "recoil";
-import { darkTheme, lightTheme } from "./theme";
+import { atom, selector } from 'recoil';
+import { darkTheme, lightTheme } from './theme';
 
 export enum Categories {
-  "TO_DO" = "TO_DO",
-  "DOING" = "DOING",
-  "DONE" = "DONE",
-  "DELETE" = "DELETE",
+  'TO_DO' = 'TO_DO',
+  'DOING' = 'DOING',
+  'DONE' = 'DONE',
+  'DELETE' = 'DELETE',
 }
 
 export interface ICategorties {
@@ -18,28 +18,28 @@ export interface IToDo {
   category: Categories;
 }
 
-const getSaveToDos = localStorage.getItem("todos");
+const getSaveToDos = localStorage.getItem('todos');
 const parseToDo = JSON.parse(getSaveToDos as any); // JSON.parse는 JSON 포맷의 문자열을 객체로 변환
-const getSaveCategory = localStorage.getItem("category");
+const getSaveCategory = localStorage.getItem('category');
 const parseCategory = JSON.parse(getSaveCategory as any); // JSON.parse는 JSON 포맷의 문자열을 객체로 변환
 
 export const categoryState = atom<Categories>({
-  key: "category",
+  key: 'category',
   default: Categories.TO_DO,
 });
 
 export const customCategoryState = atom<ICategorties[]>({
-  key: "customCategory",
+  key: 'customCategory',
   default: parseCategory !== null ? parseCategory : [],
 });
 
 export const toDoState = atom<IToDo[]>({
-  key: "toDo",
+  key: 'toDo',
   default: parseToDo !== null ? parseToDo : [],
 });
 
 export const toDoSelector = selector({
-  key: "toDoSelector",
+  key: 'toDoSelector',
   get: ({ get }) => {
     const toDos = get(toDoState);
     const category = get(categoryState);
@@ -49,14 +49,14 @@ export const toDoSelector = selector({
 
 //... THEME ...
 export const getTheme = () => {
-  const theme = localStorage.getItem("theme");
-  if (theme === "dark") {
+  const theme = localStorage.getItem('theme');
+  if (theme === 'dark') {
     return darkTheme;
   }
   return lightTheme;
 };
 
 export const isDarkAtom = atom({
-  key: "isDark",
+  key: 'isDark',
   default: getTheme(),
 });

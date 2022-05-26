@@ -1,11 +1,40 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { categoryState, customCategoryState, toDoState } from "../atoms";
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
+import { categoryState, customCategoryState, toDoState } from '../atoms';
 
 interface IForm {
   toDo: string;
 }
+
+const FormContainer = styled.div`
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input {
+      width: 80%;
+      height: 25px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      padding: 0 16px;
+      margin-right: 10px;
+      border-radius: 5px;
+    }
+    button {
+      border: none;
+      height: 25px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+`;
 
 function CreateToDo() {
   const setToDos = useSetRecoilState(toDoState);
@@ -17,20 +46,22 @@ function CreateToDo() {
       { text: toDo, id: Date.now(), category },
       ...oldToDos,
     ]);
-    setValue("toDo", "");
+    setValue('toDo', '');
   };
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(saveToDo)); // JSON.stringify는 객체나 배열을 JSON 포맷의 문자열로 변환
+    localStorage.setItem('todos', JSON.stringify(saveToDo)); // JSON.stringify는 객체나 배열을 JSON 포맷의 문자열로 변환
   }, [saveToDo]);
 
   return (
-    <form onSubmit={handleSubmit(handleValue)}>
-      <input
-        {...register("toDo", { required: "Please write a To Do" })}
-        placeholder="Write a to do"
-      />
-      <button>Add</button>
-    </form>
+    <FormContainer>
+      <form onSubmit={handleSubmit(handleValue)}>
+        <input
+          {...register('toDo', { required: 'Please write a To Do' })}
+          placeholder="할일을 입력하세요."
+        />
+        <button>추가</button>
+      </form>
+    </FormContainer>
   );
 }
 

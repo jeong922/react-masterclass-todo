@@ -1,7 +1,7 @@
-import "styled-components";
+import 'styled-components';
 
 // and extend them!
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface DefaultTheme {
     textColor: string;
     bgColor: string;
@@ -9,5 +9,6 @@ declare module "styled-components" {
     listbg: string;
     toggle_position: string;
     border: string;
+    btnBgColor: string;
   }
 }
