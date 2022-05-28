@@ -11,7 +11,7 @@ interface IForm {
 const FormContainer = styled.div`
   display: flex;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   form {
     width: 100%;
     display: flex;
@@ -43,8 +43,8 @@ function CreateToDo() {
   const { register, handleSubmit, setValue } = useForm<IForm>();
   const handleValue = ({ toDo }: IForm) => {
     setToDos((oldToDos) => [
-      { text: toDo, id: Date.now(), category },
       ...oldToDos,
+      { text: toDo, id: Date.now(), category },
     ]);
     setValue('toDo', '');
   };

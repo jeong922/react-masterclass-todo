@@ -23,15 +23,18 @@ const List = styled.div`
 const Btns = styled.div`
   margin-top: 10px;
   button {
+    height: 30px;
     margin-right: 5px;
     background-color: ${(prorps) => prorps.theme.btnBgColor};
     border: 1px solid ${(props) => props.theme.border};
     border-radius: 5px;
     color: ${(props) => props.theme.textColor};
-    padding: 5px 10px;
+    font-size: 12px;
+    /* padding: 5px 10px; */
   }
   button:hover {
     transform: scale(1.1);
+    cursor: pointer;
   }
 `;
 

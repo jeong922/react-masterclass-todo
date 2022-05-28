@@ -23,8 +23,11 @@ const Wrapper = styled.div`
   margin: 20px auto;
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 20px;
+  background-color: rgba(220, 228, 245, 0.4);
+  -webkit-box-shadow: 5px 5px 15px 5px rgb(82, 82, 82, 0.5);
+  box-shadow: 5px 5px 15px 5px rgb(82, 82, 82, 0.5);
   padding: 20px;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   div {
     &:first-child {
       margin-left: auto;
@@ -93,8 +96,22 @@ const CategoriesContainer = styled.div`
   }
 `;
 
+const TodoContainer = styled.div`
+  width: 100%;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+`;
 interface IForm {
-  customCategory: string;
+  customTitle: string;
 }
 
 function ToDoList() {
@@ -102,12 +119,17 @@ function ToDoList() {
     useRecoilState(customCategoryState);
   const setToDos = useSetRecoilState(toDoState);
   const { register, handleSubmit, setValue } = useForm();
-  const handleValue = ({ customCategory }: IForm) => {
-    setcustomCategory((data) => [
-      ...data,
-      { title: customCategory, id: Date.now() },
-    ]);
-    setValue('customCategory', '');
+  const handleValue = ({ customTitle }: IForm) => {
+    const newTitle = customCategory
+      .filter((item) => customTitle === item.title)
+      .map((value) => value.title);
+    if (newTitle[0] !== customTitle) {
+      setcustomCategory((data) => [
+        ...data,
+        { title: customTitle, id: Date.now() },
+      ]);
+      setValue('customTitle', '');
+    }
   };
   const toDos = useRecoilValue(toDoSelector);
   const [category, setCategory] = useRecoilState(categoryState);
@@ -125,12 +147,11 @@ function ToDoList() {
       ];
     });
     setcustomCategory((oldCategory) => {
-      const cusTargetIndex = oldCategory.findIndex((category) =>
-        customCategory.map((item) => item.id === category.id)
-      ); // 만족하는 조건 없으면 -1 리턴
+      const cusTargetIndex = customCategory
+        .filter((item) => category === item.title)
+        .map((value) => value.title);
       return [
-        ...oldCategory.slice(0, cusTargetIndex),
-        ...oldCategory.slice(cusTargetIndex + 1),
+        ...oldCategory.filter((item) => cusTargetIndex[0] !== item.title),
       ];
     });
   };
@@ -151,7 +172,7 @@ function ToDoList() {
         <TopContainer>
           <form onSubmit={handleSubmit(handleValue)}>
             <input
-              {...register('customCategory', {
+              {...register('customTitle', {
                 required: 'Please write a category',
               })}
               placeholder="카테고리를 입력하세요."
@@ -186,9 +207,11 @@ function ToDoList() {
           </CategoriesContainer>
           <CreateToDo />
         </MainContainer>
-        {toDos?.map((toDo) => (
-          <ToDo key={toDo.id} {...toDo} />
-        ))}
+        <TodoContainer>
+          {toDos?.map((toDo) => (
+            <ToDo key={toDo.id} {...toDo} />
+          ))}
+        </TodoContainer>
       </Wrapper>
     </>
   );
