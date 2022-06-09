@@ -10,5 +10,6 @@ declare module 'styled-components' {
     toggle_position: string;
     border: string;
     btnBgColor: string;
+    btnColor: string;
   }
 }

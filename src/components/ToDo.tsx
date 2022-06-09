@@ -25,7 +25,7 @@ const Btns = styled.div`
   button {
     height: 30px;
     margin-right: 5px;
-    background-color: ${(prorps) => prorps.theme.btnBgColor};
+    background-color: ${(prorps) => prorps.theme.btnColor};
     border: 1px solid ${(props) => props.theme.border};
     border-radius: 5px;
     color: ${(props) => props.theme.textColor};
