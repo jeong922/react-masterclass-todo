@@ -7,7 +7,7 @@ export const darkTheme: DefaultTheme = {
   listbg: '#62708D',
   toggle_position: '21px',
   border: 'rgba(255,255,255,0.2)',
-  btnBgColor: 'rgba(255, 255, 255, 0.2)',
+  btnBgColor: 'rgba(255, 255, 255, 0.6)',
 };
 
 export const lightTheme: DefaultTheme = {
@@ -17,5 +17,5 @@ export const lightTheme: DefaultTheme = {
   listbg: 'white',
   toggle_position: '1px',
   border: 'rgba(0,0,0,0.2)',
-  btnBgColor: 'rgba(0, 0, 0, 0.2)',
+  btnBgColor: 'rgba(0, 0, 0, 0.6)',
 };
