@@ -17,6 +17,7 @@ const List = styled.div`
     width: 100%;
     font-size: 18px;
     margin-left: 5px;
+    word-break: break-all;
   }
 `;
 

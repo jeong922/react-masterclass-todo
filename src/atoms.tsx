@@ -19,9 +19,9 @@ export interface IToDo {
 }
 
 const getSaveToDos = localStorage.getItem('todos');
-const parseToDo = JSON.parse(getSaveToDos as any); // JSON.parse는 JSON 포맷의 문자열을 객체로 변환
+const parseToDo = JSON.parse(getSaveToDos as any);
 const getSaveCategory = localStorage.getItem('category');
-const parseCategory = JSON.parse(getSaveCategory as any); // JSON.parse는 JSON 포맷의 문자열을 객체로 변환
+const parseCategory = JSON.parse(getSaveCategory as any);
 
 export const categoryState = atom<Categories>({
   key: 'category',

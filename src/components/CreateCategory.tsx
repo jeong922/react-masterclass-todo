@@ -60,6 +60,7 @@ const CategoriesContainer = styled.div`
     outline: none;
     border-radius: 5px;
     width: 60%;
+    padding: 0 5px;
   }
   button {
     display: flex;
