@@ -72,24 +72,24 @@ function ToDo({ text, category, id }: IToDo) {
       <li>
         <span>{text}</span>
         <Btns>
-          {category !== Categories.DOING && (
-            <button name={Categories.DOING} onClick={onClick}>
+          {category !== 'DOING' && (
+            <button name={'DOING'} onClick={onClick}>
               진행중
             </button>
           )}
-          {category !== Categories.TO_DO && (
-            <button name={Categories.TO_DO} onClick={onClick}>
+          {category !== 'TO_DO' && (
+            <button name={'TO_DO'} onClick={onClick}>
               할 일
             </button>
           )}
-          {category !== Categories.DONE && (
-            <button name={Categories.DONE} onClick={onClick}>
+          {category !== 'DONE' && (
+            <button name={'DONE'} onClick={onClick}>
               완료
             </button>
           )}
 
-          {category !== Categories.DELETE && (
-            <button name={Categories.DELETE} onClick={deleteToDo}>
+          {category !== 'DELETE' && (
+            <button name={'DELETE'} onClick={deleteToDo}>
               삭제
             </button>
           )}

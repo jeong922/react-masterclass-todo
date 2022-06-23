@@ -150,9 +150,9 @@ function CreateCategory() {
       </MakeCategory>
       <CategoriesContainer>
         <select value={category} onInput={onInput}>
-          <option value={Categories.TO_DO}>할 일</option>
-          <option value={Categories.DOING}>진행중</option>
-          <option value={Categories.DONE}>완료</option>
+          <option value={'TO_DO'}>할 일</option>
+          <option value={'DOING'}>진행중</option>
+          <option value={'DONE'}>완료</option>
           {customCategory.map((category) => (
             <option key={category.id} value={category.title}>
               {category.title}

@@ -1,12 +1,15 @@
+import { type } from 'os';
 import { atom, selector } from 'recoil';
 import { darkTheme, lightTheme } from './theme';
 
-export enum Categories {
-  'TO_DO' = 'TO_DO',
-  'DOING' = 'DOING',
-  'DONE' = 'DONE',
-  'DELETE' = 'DELETE',
-}
+// export enum Categories {
+//   'TO_DO' = 'TO_DO',
+//   'DOING' = 'DOING',
+//   'DONE' = 'DONE',
+//   'DELETE' = 'DELETE',
+// }
+
+export type Categories = 'TO_DO' | 'DOING' | 'DONE' | 'DELETE';
 
 export interface ICategorties {
   title: string;
@@ -25,7 +28,7 @@ const parseCategory = JSON.parse(getSaveCategory as any);
 
 export const categoryState = atom<Categories>({
   key: 'category',
-  default: Categories.TO_DO,
+  default: 'TO_DO',
 });
 
 export const customCategoryState = atom<ICategorties[]>({
